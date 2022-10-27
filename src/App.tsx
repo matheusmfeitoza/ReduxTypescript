@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import "./style.css";
+import { incrementar, reduzir } from "./store/contador";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { fetchData } from "./store/photo";
 function App() {
+  const dispatch = useAppDispatch();
+  const valor = useAppSelector((state) => state.contador.value);
+  const photos = useAppSelector((state) => state.photo.data);
+
+  React.useEffect(() => {
+    dispatch(fetchData());
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mainContainer">
+      <div className="value">{valor}</div>
+      <div className="btnWrapper">
+        <button onClick={() => dispatch(incrementar())}>+</button>
+        <button disabled={valor === 0} onClick={() => dispatch(reduzir())}>
+          -
+        </button>
+      </div>
+      {photos?.map((photo) => {
+        return <p>{photo.title}</p>;
+      })}
     </div>
   );
 }
