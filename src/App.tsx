@@ -4,13 +4,17 @@ import { incrementar, reduzir } from "./store/contador";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { fetchData } from "./store/photo";
 function App() {
+  // Função para disparar a minha thunkAction
   const dispatch = useAppDispatch();
+  // Funções para obter os valores contidos no estado, que no momento são ( contador e photo)
   const valor = useAppSelector((state) => state.contador.value);
   const photos = useAppSelector((state) => state.photo.data);
 
+  // Efeito para disparar a ação fetch e buscar os dados da API
   React.useEffect(() => {
     dispatch(fetchData());
-  });
+  }, [dispatch]);
+
   return (
     <div className="mainContainer">
       <div className="value">{valor}</div>
@@ -21,7 +25,7 @@ function App() {
         </button>
       </div>
       {photos?.map((photo) => {
-        return <p>{photo.title}</p>;
+        return <p key={photo.id}>{photo.title}</p>;
       })}
     </div>
   );

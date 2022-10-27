@@ -1,23 +1,26 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 
-interface PhotoProps {
-  data: photoP[] | null;
+// Interface para tipar o state
+interface IPhotoProps {
+  data: PhotoData[] | null;
   loading: boolean;
   error: string | null;
 }
-
-type photoP = {
+// Type para definir as entradas da API
+type PhotoData = {
   id?: number;
   title?: string;
   author?: string;
 };
 
-const initialState: PhotoProps = {
+// Estado inicial
+const initialState: IPhotoProps = {
   loading: false,
   data: null,
   error: null,
 };
 
+// Reducer
 const slice = createSlice({
   name: "photo",
   initialState,
@@ -25,7 +28,7 @@ const slice = createSlice({
     fetchStated(state) {
       state.loading = true;
     },
-    fetchSuccess(state, action) {
+    fetchSuccess(state, action: PayloadAction<PhotoData[]>) {
       state.loading = false;
       state.data = action.payload;
       state.error = null;
@@ -38,8 +41,10 @@ const slice = createSlice({
   },
 });
 
+// Actions
 const { fetchStated, fetchSuccess } = slice.actions;
 
+// Função que será despachada e trará o resultado da API
 export const fetchData = () => async (dispatch: Dispatch) => {
   try {
     dispatch(fetchStated());
