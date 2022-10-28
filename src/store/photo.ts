@@ -11,6 +11,8 @@ type PhotoData = {
   id?: number;
   title?: string;
   author?: string;
+  src?: string;
+  acessos?:string;
 };
 
 // Estado inicial

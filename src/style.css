@@ -38,3 +38,63 @@ button:hover {
   border: 1px solid slateblue;
   background-color: tomato;
 }
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 200px;
+  justify-content: center;
+  align-content: center;
+}
+label {
+  text-align: center;
+}
+input {
+  padding: 10px 20px;
+  font-size: .875rem;
+  border-radius: 4px;
+  background-color: slateblue;
+  color: white;
+  border: 1px solid tomato;
+  outline: none;
+}
+input:hover {
+  outline: none;
+}
+
+.photo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.photos-wrapper{
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  grid-template-rows: 80px 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  background-color: tomato;
+  width: 300px;
+  margin-bottom: 20px;
+  height: 80px;
+  border-radius: 4px;
+}
+.photo-img{
+  max-width: 100%;
+}
+
+.photo-title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: white;
+  font-weight: lighter;
+  letter-spacing: 2px;
+}
+.photo-acessos{
+  font-weight: lighter;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 12px;
+  color: #fff;
+  letter-spacing: 2px;
+  padding-right: 5px;
+}
